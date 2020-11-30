@@ -13,7 +13,7 @@ class dt_NN_util():
 
     def return_single_annotation(self, image_name):
         image_annotation = self.json_file[image_name]
-        bbox_count = 0
+        bbox_count = 1
         for annotation in image_annotation:
             print("Category name is: {}".format((annotation)['cat_name']))
             print("Bounding box {}: coordinates: {}".format(
@@ -36,7 +36,6 @@ class dt_NN_util():
         bbox_count = len(image_annotation)
         for annotation in image_annotation:
             category = int(annotation['cat_id'])
-            print(category)
             bbox = annotation['bbox']
             point1 = (int(bbox[0]), int(bbox[1]))
             point2 = (int(bbox[0])+int(bbox[2]), int(bbox[1])+int(bbox[3]))
@@ -48,7 +47,6 @@ class dt_NN_util():
                 colorKey = (0, 0, 255)
             else:
                 colorKey = (255, 255, 255)
-            print(point1)
             image = cv2.rectangle(image_base, point1, point2,colorKey,2)
         cv2.imshow(image_name, image)
         cv2.waitKey()
