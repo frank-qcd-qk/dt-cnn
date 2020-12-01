@@ -4,12 +4,20 @@ import os
 import cv2
 
 
-class dt_NN_util():
+class DT_DNN_UTIL():
     def __init__(self, image_dir, annotation_dir):
         self.image_dir = image_dir
         self.annotation_dir = annotation_dir
         with open(annotation_dir) as f:
             self.json_file = json.load(f)
+
+    def load_all_annotations(self):
+         inputs = []
+         predictions = [] # [[category,[bbox]],[category,[bbox]]]
+         arr = os.listdir(self.image_dir)
+
+         
+
 
     def return_single_annotation(self, image_name):
         image_annotation = self.json_file[image_name]
@@ -65,5 +73,5 @@ if __name__ == "__main__":
     image_name = args["image_name"]
     image_dir = args["image_dir"]
     annotation_dir = args["annotation_dir"]
-    node = dt_NN_util(image_dir, annotation_dir)
+    node = DT_DNN_UTIL(image_dir, annotation_dir)
     node.show_image_with_annotation(image_name)
