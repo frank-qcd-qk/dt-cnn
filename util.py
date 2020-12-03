@@ -8,13 +8,10 @@ import io
 import cv2
 import tensorflow as tf
 from PIL import Image
-import sys
-sys.path.append('./')
 from object_detection.utils import dataset_util
 
-
 class DT_DNN_UTIL():
-    def __init__(self, image_dir, annotation_dir, output_dir='train.record'):
+    def __init__(self, image_dir, annotation_dir, output_dir='annotation/train.record'):
         self.image_dir = image_dir
         self.annotation_dir = annotation_dir
         with open(annotation_dir) as f:
@@ -55,9 +52,10 @@ class DT_DNN_UTIL():
         filename = image_name.encode('utf8')
         image_format = b'png'
         for bbox in annotations:
-            unannotated_bbox =(bbox)['bbox']
+            unannotated_bbox = (bbox)['bbox']
             point1 = (int(unannotated_bbox[0]), int(unannotated_bbox[1]))
-            point2 = (int(unannotated_bbox[0])+int(unannotated_bbox[2]), int(unannotated_bbox[1])+int(unannotated_bbox[3]))
+            point2 = (int(unannotated_bbox[0])+int(unannotated_bbox[2]),
+                      int(unannotated_bbox[1])+int(unannotated_bbox[3]))
             xmins.append(point1[0] / width)
             xmaxs.append(point2[0] / width)
             ymins.append(point1[1] / height)
@@ -85,7 +83,7 @@ class DT_DNN_UTIL():
         bbox_count = 1
         for annotation in image_annotation:
             #print("Category name is: {}".format((annotation)['cat_name']))
-            #print("Bounding box {}: coordinates: {}".format(
+            # print("Bounding box {}: coordinates: {}".format(
             #    bbox_count, (annotation)['bbox']))
             bbox_count += 1
         return image_annotation
