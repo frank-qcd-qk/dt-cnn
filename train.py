@@ -3,7 +3,6 @@ import cv2
 import argparse
 from util import DT_DNN_UTIL
 
-
 class DT_OBSTACLE_Trainer():
     def __init__(self, image_dir, annotation_dir, epochs, batch, lr, split, model="CNN"):
         self.image_dir = image_dir
