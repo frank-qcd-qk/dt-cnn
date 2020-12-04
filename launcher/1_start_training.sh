@@ -3,7 +3,13 @@
 export PYTHONPATH=$PYTHONPATH:/home/frank/Duckietown/NewObstacle/NerualNetworkFun/dt-cnn
 
 #? Training configuration
-TYPE=1_mobile_net_v2
+# TYPE=1_mobile_net_v2
+# TYPE=2_center_net_v2
+# TYPE=3_efficient_det_d0
+TYPE=4_retina_net_50
+# TYPE=5_efficient_det_d1
+# TYPE=6_faster_rcnn
+
 #CHECKPOINT_DIR=trials/${TYPE}/model_dir #Path to directory holding a checkpoint.  If `checkpoint_dir` is provided, this binary operates in eval-only mode, writing resulting metrics to `model_dir`.
 CHECKPOINT_EVERY_N=1000 #Integer defining how often we checkpoint.
 #--eval_timeout: Number of seconds to wait for anevaluation checkpoint before exiting.
