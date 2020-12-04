@@ -9,3 +9,5 @@ events.*
 checkpoint
 train.record
 val.record
+__pycache__/
+__pycache__
