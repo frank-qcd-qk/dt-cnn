@@ -1,0 +1,27 @@
+  fine_tune_checkpoint: "trials/mobile_net_v2/checkpoint/model.ckpt"
+  num_steps: 50000
+  startup_delay_steps: 0.0
+  replicas_to_aggregate: 8
+  max_number_of_boxes: 100
+  unpad_groundtruth_tensors: false
+  fine_tune_checkpoint_type: "detection"
+  fine_tune_checkpoint_version: V2
+}
+train_input_reader {
+  label_map_path: "data/label.pbtxt"
+  tf_record_input_reader {
+    input_path: "data/train.record"
+  }
+}
+eval_config {
+  metrics_set: "coco_detection_metrics"
+  use_moving_averages: false
+}
+eval_input_reader {
+  label_map_path: "data/label.pbtxt"
+  shuffle: false
+  num_epochs: 1
+  tf_record_input_reader {
+    input_path: "data/val.record"
+  }
+}

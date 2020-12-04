@@ -1,0 +1,11 @@
+*.record
+*.data-00000-of-00001
+*.index
+*.pb
+checkpoint/**
+model_dir/**
+saved_model/**
+events.*
+checkpoint
+train.record
+val.record

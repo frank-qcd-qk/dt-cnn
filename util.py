@@ -9,28 +9,44 @@ import cv2
 import tensorflow as tf
 from PIL import Image
 from object_detection.utils import dataset_util
+from sklearn.model_selection import train_test_split
 
 class DT_DNN_UTIL():
-    def __init__(self, image_dir, annotation_dir, output_dir='annotation/train.record'):
+    def __init__(self, image_dir, annotation_dir, output_dir='data/'):
         self.image_dir = image_dir
         self.annotation_dir = annotation_dir
         with open(annotation_dir) as f:
             self.json_file = json.load(f)
         self.tf_record_output = output_dir
+        self.split_for_val = 0.2
         self.counted_images = 0
         self.skipped_images = 0
 
     def create_tf_record(self):
-        writer = tf.io.TFRecordWriter(self.tf_record_output)
+        train_writer = tf.io.TFRecordWriter(os.path.join(self.tf_record_output, "train.record"))
+        val_writer = tf.io.TFRecordWriter(os.path.join(self.tf_record_output, "val.record"))
         image_name_list = os.listdir(self.image_dir)
-        for image_name in image_name_list:
+        print("Total {} images requested...".format(len(image_name_list)))
+        train_list,val_list = train_test_split(image_name_list,test_size=self.split_for_val, shuffle=True)
+        for image_name in train_list:
             tf_example = self.create_tf_example(image_name)
             if tf_example != None:
-                writer.write(tf_example.SerializeToString())
+                train_writer.write(tf_example.SerializeToString())
                 print("Image {} done...".format(image_name))
+                self.counted_images += 1
             else:
                 continue
-        writer.close()
+        train_writer.close()
+        for image_name in val_list:
+            tf_example = self.create_tf_example(image_name)
+            if tf_example != None:
+                val_writer.write(tf_example.SerializeToString())
+                print("Image {} done...".format(image_name))
+                self.counted_images += 1
+            else:
+                continue
+        val_writer.close()        
+        print("Set {} training sample, {} validation sample".format(len(train_list),len(val_list)))
         print("Record Creation Successfully! Skipped {} images... Created {} Images".format(
             self.skipped_images, self.counted_images))
 
@@ -48,8 +64,8 @@ class DT_DNN_UTIL():
             print("Image {} has {} issue... Skipping...".format(image_id, e))
             self.skipped_images += 1
             return
-        annotations = self.return_single_annotation(image_name)
-        filename = image_name.encode('utf8')
+        annotations = self.return_single_annotation(image_id)
+        filename = image_id.encode('utf8')
         image_format = b'png'
         for bbox in annotations:
             unannotated_bbox = (bbox)['bbox']
@@ -59,7 +75,7 @@ class DT_DNN_UTIL():
             xmins.append(point1[0] / width)
             xmaxs.append(point2[0] / width)
             ymins.append(point1[1] / height)
-            ymaxs.append(point2[0] / height)
+            ymaxs.append(point2[1] / height)
             classes_text.append(bbox['cat_name'].encode('utf8'))
             classes.append(bbox['cat_id'])
         tf_example = tf.train.Example(features=tf.train.Features(feature={
@@ -131,7 +147,7 @@ class DT_DNN_UTIL():
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--image_name", required=True,
+    ap.add_argument("--image_name", required=False,
                     help="Identify what image annotation you want to load")
     ap.add_argument("--image_dir", required=True,
                     help="Identify where the image is")
