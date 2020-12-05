@@ -1,0 +1,56 @@
+I1205 13:20:54.802228 140126694295360 coco_tools.py:138] DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=1.46s).
+Accumulating evaluation results...
+DONE (t=0.20s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.510
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.840
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.583
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.334
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.619
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.755
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.351
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.575
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.588
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.426
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.686
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.795
+INFO:tensorflow:Eval metrics at step 17000
+I1205 13:20:56.484065 140126694295360 model_lib_v2.py:954] Eval metrics at step 17000
+INFO:tensorflow:	+ DetectionBoxes_Precision/mAP: 0.509764
+I1205 13:20:56.486798 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Precision/mAP: 0.509764
+INFO:tensorflow:	+ DetectionBoxes_Precision/mAP@.50IOU: 0.840476
+I1205 13:20:56.487465 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Precision/mAP@.50IOU: 0.840476
+INFO:tensorflow:	+ DetectionBoxes_Precision/mAP@.75IOU: 0.582529
+I1205 13:20:56.487857 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Precision/mAP@.75IOU: 0.582529
+INFO:tensorflow:	+ DetectionBoxes_Precision/mAP (small): 0.334204
+I1205 13:20:56.488214 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Precision/mAP (small): 0.334204
+INFO:tensorflow:	+ DetectionBoxes_Precision/mAP (medium): 0.618577
+I1205 13:20:56.488590 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Precision/mAP (medium): 0.618577
+INFO:tensorflow:	+ DetectionBoxes_Precision/mAP (large): 0.755320
+I1205 13:20:56.488964 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Precision/mAP (large): 0.755320
+INFO:tensorflow:	+ DetectionBoxes_Recall/AR@1: 0.351289
+I1205 13:20:56.489321 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Recall/AR@1: 0.351289
+INFO:tensorflow:	+ DetectionBoxes_Recall/AR@10: 0.575201
+I1205 13:20:56.489672 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Recall/AR@10: 0.575201
+INFO:tensorflow:	+ DetectionBoxes_Recall/AR@100: 0.587720
+I1205 13:20:56.490025 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Recall/AR@100: 0.587720
+INFO:tensorflow:	+ DetectionBoxes_Recall/AR@100 (small): 0.426308
+I1205 13:20:56.490414 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Recall/AR@100 (small): 0.426308
+INFO:tensorflow:	+ DetectionBoxes_Recall/AR@100 (medium): 0.685745
+I1205 13:20:56.490786 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Recall/AR@100 (medium): 0.685745
+INFO:tensorflow:	+ DetectionBoxes_Recall/AR@100 (large): 0.794550
+I1205 13:20:56.491200 140126694295360 model_lib_v2.py:957] 	+ DetectionBoxes_Recall/AR@100 (large): 0.794550
+INFO:tensorflow:	+ Loss/localization_loss: 0.002988
+I1205 13:20:56.491487 140126694295360 model_lib_v2.py:957] 	+ Loss/localization_loss: 0.002988
+INFO:tensorflow:	+ Loss/classification_loss: 0.185938
+I1205 13:20:56.491890 140126694295360 model_lib_v2.py:957] 	+ Loss/classification_loss: 0.185938
+INFO:tensorflow:	+ Loss/regularization_loss: 0.038057
+I1205 13:20:56.492224 140126694295360 model_lib_v2.py:957] 	+ Loss/regularization_loss: 0.038057
+INFO:tensorflow:	+ Loss/total_loss: 0.226983
+I1205 13:20:56.492533 140126694295360 model_lib_v2.py:957] 	+ Loss/total_loss: 0.226983
+
+
