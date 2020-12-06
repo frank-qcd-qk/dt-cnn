@@ -9,11 +9,11 @@ from object_detection.utils import config_util
 from object_detection.utils import visualization_utils as viz_utils
 from object_detection.builders import model_builder
 
-# TYPE="1_mobile_net_v2"
+TYPE="1_mobile_net_v2"
 # TYPE="3_efficient_det_d0"
 # TYPE="4_retina_net_50"
 # TYPE="5_efficient_det_d1"
-TYPE="6_faster_rcnn"
+# TYPE="6_faster_rcnn"
 
 CKPT_DICT = {
 "1_mobile_net_v2":"ckpt-16",
@@ -101,6 +101,7 @@ detections, predictions_dict, shapes = detect_fn(input_tensor)
 label_id_offset = 1
 image_np_with_detections = image_np.copy()
 
+print(detections)
 
 viz_utils.visualize_boxes_and_labels_on_image_array(
     image_np_with_detections,
@@ -113,7 +114,7 @@ viz_utils.visualize_boxes_and_labels_on_image_array(
     min_score_thresh=.30,
     agnostic_mode=False,
 )
-
+print("category_index {}".format(category_index))
 plt.figure(figsize=(12, 16))
 plt.imshow(image_np_with_detections)
 plt.savefig('image_with_detection.png')

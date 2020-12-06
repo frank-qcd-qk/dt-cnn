@@ -14,7 +14,7 @@ TYPE=1_mobile_net_v2
 CHECKPOINT_EVERY_N=1000 #Integer defining how often we checkpoint.
 #--eval_timeout: Number of seconds to wait for anevaluation checkpoint before exiting.
 MODEL_DIR=trials/${TYPE}/model_dir #Path to output model directory where event and checkpoint files will be written.
-NUM_TRAIN_STEPS=15000 #Number of train steps.
+NUM_TRAIN_STEPS=50000 #Number of train steps.
 PIPELINE_CONFIG_PATH=trials/${TYPE}/config/pipeline.config #Path to pipeline config file.
 
 python3 object_detection/model_main_tf2.py \
